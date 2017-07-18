@@ -1,0 +1,41 @@
+.navbar-inverse{
+height: 100px;
+
+}
+
+.navbar.navbar-inverse{
+height: 100px;
+
+}
+
+.navbar{
+	height: 100px;
+	background-color: green;
+}
+
+.image-class{
+	width: 200px;
+	height: 100px;
+	float: left;
+	margin-left: 50px;
+}
+
+#myNav{
+	padding-top: 30px;
+	margin-left: 200px;
+    
+}
+#ul1{
+	margin-left: 20px;
+	height: 30px;
+}
+.description-class{
+	margin-left: 20px;
+	margin-bottom: 200px
+}
+
+.largeicon{
+    font-size:30px;
+    padding-left:35px;
+    padding-right:35px;
+}

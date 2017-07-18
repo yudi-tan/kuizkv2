@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Create New Classroom</title>
+    <link href="{% static "homepage/css/bootstrap.min.css" %}" rel="stylesheet">
+     <link href="{% static "homepage/css/customStyle.css" %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">    
+        <div  style="margin-top:50px;"   class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info"  >
+                    <div class="panel-heading"  style="background-color:  #337ab7">
+                        <div class="panel-title" style="color: rgb(  243, 243, 243 );">New Classroom</div>
+                       
+                    </div>     
+
+                    <div class="panel-body" >
+                            <form class='form-horizontal' action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+
+                                        <span class="text-danger small">{{ field.errors }}</span>
+
+                                    </div>
+
+                                    <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+
+                                    <div class="col-sm-10">
+                                        {{ field }}
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                            {% endfor %}
+                            
+                            <h5> Passcode has to be a 6-digit pin. </h5>
+
+                                <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
+                                    
+                                    <div class="col-md-offset-2 col-md-9">
+                                    <button id="btn-user-post" type="submit" class="btn btn-primary" ><i class="icon-hand-right"></i>Create</button>
+                                       <!--  <span style="margin-left:8px; margin-right: 8px">or</span> 
+                                         <button id="btn-anonymous" type="submit" class="btn btn-primary"><i></i>Post as Anonymous</button> -->
+                                    </div>
+                                        
+                                    </div>                                           
+                                 </form> 
+                                </div>
+                         </div>                     
+                    </div>  
+        </div>
+        
+        
+    </div>
+​
+</body>
+</html>

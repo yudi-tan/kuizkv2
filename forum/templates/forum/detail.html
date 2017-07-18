@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Kuizk</title>
+    <meta charset="utf-8">
+     <link href="{% static "forum/css/bootstrap.min.css" %}" rel="stylesheet">
+     <link href="{% static "forum/css/customStyle.css" %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+   <!-------------------------NAVBAR-----------------------
+   <a href="mypage.html" style="float: left"><img src="img/newlogo.jpg" class="image-class">  </a>
+  -------------------------------------------------------->
+
+
+   <div>
+
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+crossorigin="anonymous">
+
+<h4 style="position: relative; left: 1050px; ">
+
+  <small>
+    <em>Logged in as: {{ request.user.username }}</em>
+</small>
+</h4>
+
+
+
+    <div class="row" >
+      <div class="col-sm-2">
+      </div>
+  <div class="col-sm-8">
+
+
+
+    <div class="panel panel-primary">
+     <div class="panel-heading" >
+       <div class="row" style="height: 10px">
+          <div class="col-sm-4" style="position:relative; bottom:3px; left:-10px">
+              <h3 class="panel-title" > <span class="glyphicon glyphicon-question-sign"></span> Question</h3>
+              </div>
+          </div>
+      </div>
+
+      <div class="panel-body" style="background-color:white">
+        <div id="question-content">
+         <div id="title-div" style=" color:black; font-family: 'Trocchi',
+         serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0;" > <h2>{{ detailpost.title }}</h2></div>
+         <h4 style="position:relative;"><small>Posted by: {{ detailpost.writer.first_name }} {{ detailpost.writer.last_name }}</small></h4>
+                   <p><a href="{% url 'classroom:forum:index' pk pk2 %}">Back to forum</a></p>
+
+         <hr style="BORDER-RIGHT: medium none; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; HEIGHT: 1px">
+
+         <div id="detail-div" style="margin-left: 20px"><p> {{ detailpost.text }} </p>
+         </div>
+        </div>
+
+
+
+
+      <div class="commentpaneldiv">
+
+          <h4>Leave a Comment:</h4>
+          <button type="submit"><a href="{% url 'classroom:forum:createcomment' pk pk2 pk3 %}">
+            <span class="glyphicon glyphicon-plus"></span>Add Comment</a></button>
+          <br>
+            <p><span class="badge"></span> Comments:</p>
+          <br>
+           {% for comment in comments %}
+            <div class="col-sm-10">
+
+            <div class="row">
+
+            <div class="col-sm-2 text-center">
+
+            </div>
+
+            <h4><img src="{% static 'forum/img/images.png' %}" class="img-circle" height="30" width="30" alt="Avatar">
+                {{ comment.writer.first_name }} {{ comment.writer.last_name }}</h4><small>{{ comment.created_date }}</small>
+            <p><h4>{{ comment.text|linebreaks }}</h4></p>
+            <br>
+          {% empty %}
+            <p>No comments here yet :(</p>
+        </div>
+            {% endfor %}
+        </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+
+
+
+   </div>
+
+   </body>
+
+
+   </html>

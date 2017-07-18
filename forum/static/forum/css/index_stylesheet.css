@@ -1,0 +1,349 @@
+
+
+.top_bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    color: white;
+    height: 34px;
+    z-index: 1005;
+    min-height: 0px;
+    border-radius: 0;
+    border: none;
+    min-width: 1500px;
+    background: black;
+}
+
+#menu
+{
+    padding: 8px;;
+    margin:0;
+    color:#fff;
+    white-space:nowrap;
+    list-style-type:none;
+    text-shadow: #2e5e83 1px 1px 0px;
+}
+#menu li {
+    display:inline;
+    padding: 35px;
+    text-shadow: #2e5e83 1px 1px 0px;
+}
+#menu li a
+{
+    padding:0.2em 1em;
+    background:#fc6;
+    color:#000;
+    text-decoration:none;
+    float:left;
+    border:1px solid #000;
+    text-shadow: #2e5e83 1px 1px 0px;
+}
+#menu li a:hover
+{
+    background:#08c;
+    color:#fff;
+    text-shadow: #2e5e83 1px 1px 0px;
+}
+.down_bar{
+    position: absolute;
+    top: 34px;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    color: white;
+    height: 20px;
+    z-index: 1005;
+    min-height: 0px;
+    border-radius: 0;
+    border: none;
+    min-width: 1100px;
+    background: #dee0e2 !important;
+}
+#secondmenu
+{
+    padding: 0px;
+    margin:0;
+    color: #000000;;
+    white-space:nowrap;
+    list-style-type:none;
+}
+#secondmenu li {
+    font-size:12px;
+    display:inline;
+    padding: 25px;
+}
+#secondmenu li a
+{
+    padding:0.2em 1em;
+    background:#fc6;
+    color:#000;
+    text-decoration:none;
+    float:left;
+    border:1px solid #000;
+}
+#secondmenu li a:hover
+{
+    background:#08c;
+    color:#fff;
+}
+.searchbox{
+    position: absolute;
+    top: 54px;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    color: white;
+    height: 38px;
+    z-index: 1005;
+    min-height: 0px;
+    border-radius: 0;
+    border: none;
+    width: 320px;
+    background: #aaaaaa !important;
+}
+
+.newpost{
+    padding: 3px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    box-shadow: #2e5e83;
+}
+#new_post_button{
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+#bucket_pin{
+
+
+
+}
+#bucket_pin2{
+    position:relative;
+    top:-93px;
+
+
+}
+
+
+.search_bar{
+    background: white;
+    border: 1px solid #999;
+    -webkit-box-shadow: 0 0 3px #ccc, inset 0 1px 5px #bbb;
+    height: 0px;
+    margin: -34px 3px 5px 110px;
+    background-clip: padding-box;
+    width: 200px;
+}
+.search-input {
+    border-radius: 10px;
+    border-right: 0;
+}
+
+.search-icon {
+    border-left:0 solid transparent;
+    background:transparent;
+}
+.questions{
+    margin: 93px 0px;
+}
+.page_feed_bucket_header{
+    background: -webkit-linear-gradient(top, #f3f3f4 0%, #dee0e2 100%);
+    box-shadow: inset 0 1px 0 white;
+    backgroundcolor: #858585;
+    text-shadow: 0 1px 0 white;
+    border-bottom: 1px solid #c7c6c6;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.3;
+    padding: 4px 6px;
+    text-transform: uppercase;
+    margin:92px -5px;
+    width:325px;
+}
+.questions_group{
+    position: absolute;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    background: #FFF;
+    color: #333;
+    max-width: 550px;
+    width: 320px;
+    z-index: 1000;
+    border-right: 1px solid #ccc;
+}
+.inner-text{
+    margin-left: 10px;
+}
+
+
+
+
+
+
+/* friend */
+
+.My-Photo{
+    position:absolute;
+    top:50px;
+    left:80px;
+    background:white;
+    -webkit-box-shadow: 0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: 2px solid #999;
+    height:170px;
+    width: 170px;
+    z-index:1000;
+}
+
+.Ainfo{
+    position:absolute;
+    top:250px;
+    left:30px;
+    background:white;
+    -webkit-box-shadow:0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: 2px solid #999;
+    height:50px;
+    width: 350px;
+    padding-top: 5px;
+    padding-left:10px;
+    }
+ #Ainfot{
+    font-weight:bold;
+
+ }
+.Cpref{
+    position:absolute;
+    top:310px;
+
+    left:30px;
+    background:white;
+    -webkit-box-shadow: 0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: 2px solid #999;
+    height:100px;
+    width: 350px;
+    padding-top: 5px;
+    padding-left: 10px;
+    }
+ #Ctitle{
+    font-size:50;
+    font-weight:bold;
+ }
+
+ .Exp{
+    position:absolute;
+    top:420px;
+    left:30px;
+    background:white;
+    -webkit-box-shadow:0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: 2px solid #999;
+    height:700px;
+    width: 350px;
+    font-weight:bold;
+    padding-top: 5px;
+    padding-left: 10px;
+    }
+
+  .Econtent{
+    font-weight:normal;
+    text-indent:30px;
+  }
+  .friend_title{
+    position:absolute;
+    top:160px;
+    left:30px;
+    background:white;
+    -webkit-box-shadow: 0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: 2px solid #999;
+    height:80px;
+    width: 1200px;
+    font-size:24px;
+    font-weight:bold;
+    z-index:0;
+    padding-top:40px;
+    padding-left:420px;
+
+  }
+  .name{
+    position:absolute;
+    top:60px;
+    left:30px;
+    background:white;
+    padding-left:230px;
+    font-size:30px;
+    font-weight:bold;
+    z-index:100;
+  }
+
+.school{
+    position:absolute;
+    top:100px;
+    left:30px;
+    background:white;
+    padding-left:230px;
+    font-size:25px;
+    z-index:99;
+  }
+
+.Job_Statues{
+    position:absolute;
+    top:250px;
+    left:390px;
+    background:white;
+    -webkit-box-shadow:0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: 2px solid #999;
+    height:70px;
+    width: 280px;
+    padding-top: 5px;
+    padding-left: 15px;
+}
+
+.Visa{
+    position:absolute;
+    top:250px;
+    left:670px;
+    background:white;
+    -webkit-box-shadow: 0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: 2px solid #999;
+    height:70px;
+    width: 280px;
+    padding-top: 5px;
+    padding-left: 15px;
+}
+
+.Role{
+    position:absolute;
+    top:250px;
+    left:950px;
+    background:white;
+    -webkit-box-shadow: 0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: 2px solid #999;
+    height:70px;
+    width: 280px;
+    padding-top: 5px;
+    padding-left: 15px;
+}
+
+.d{font-size:13px;
+    font-weight:bold;
+}
+
+
+.resume{
+    position:absolute;
+    top:330px;
+    left:390px;
+    background:white;
+    -webkit-box-shadow: 0 0 3px #ccc, inset 0 1px 5px #bbb；
+    border: inset 0 1px 0 white;
+    height:790px;
+    width: 840px;
+    padding-left: 15px;
+    font-size:15px;
+}
+#re_t{
+    font-size:20px;
+    font-weight:bold;
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!-- saved from url=(0018)https://cs61a.org/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    {% load static %}
+
+    <meta name="viewport" content="width=device-width">
+
+    <script src="{% static "classroom/js/jquery.min.js" %}"></script>
+    <script src="{% static "classroom/js/bootstrap.min.js" %}"></script>
+
+    <link rel="stylesheet" href="{% static "classroom/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "classroom/css/style.css" %}">
+    <link rel="icon" href="https://cs61a.org/assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="{% static "classroom/css/mono-blue.css" %}">
+    <script src="{% static "classroom/js/highlight.pack.js" %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    <title>{{ instance.classname }}</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'homepage:loggedin' %}">Home</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-section">
+          <ul class="nav navbar-nav navbar-right">
+
+        </div>
+      </div>
+    </nav>
+
+    <div id="content" class="container">
+      
+
+
+<h2>Class Members</h2>
+
+<div id="assignment-quick-list">
+</div>
+
+<div id='announcements'>
+<p><u>Owner</u></p>
+<p><a href="{% url 'circle:profile' owner.pk %}">{{ owner.first_name }} {{ owner.last_name }}</a></p>
+<p><u>Students</u></p>
+{% if namelist %}
+{% for xy in xy %}
+<p><a href="{% url 'circle:profile' xy.1.pk %}">{{ xy.0 }}</a></p>
+{% endfor %}
+{% endif %}
+</div>
+
+
+
+
+<script>
+$(document).ready(function() {
+  // Resource search
+  var options = {
+    valueNames: ['resource-name', 'resource-type', 'resource-tags']
+  };
+  var resourceList = new List('resources', options);
+
+  // Piazza search
+  var client = $.algolia.Client('LHANIWJEIC', '20e552423616d96d3b5bddc3f23360e9');
+  var index = client.initIndex('CS61A Sp16 Piazza'); // Change this depending on semester
+  var piazzaResultLimit = 5;
+  var piazzaCache = {};
+
+  function piazzaSearchCallback(err, content) {
+    if (err || content.hits.length === 0) {
+      return;
+    }
+    // Scan all hits and display them
+    for (var i = 0; i < Math.min(content.hits.length, piazzaResultLimit); ++i) {
+
+      var hit = content.hits[i];
+      if (hit.qid in piazzaCache) {
+        piazzaCache[hit.qid].show();
+        continue;
+      }
+
+
+      newPost = resourceList.add({
+          'resource-name': '<a href="' + hit.urlto + '">'
+                           + '@' + hit.qid.toString() + ': ' + hit.subject
+                           + '</a>',
+          'resource-type': 'Piazza post',
+          'resource-tags': hit.tags.join(', ')
+        });
+      newPost[0].show();
+      piazzaCache[hit.qid] = newPost[0];
+
+
+    }
+  }
+
+  function urlExists(url, callback) {
+      // adapted from http://stackoverflow.com/a/1591653
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+          xhr.readyState === 4 && callback(xhr.status < 400);
+      };
+      xhr.open('HEAD', url);
+      xhr.send();
+  }
+
+  // Assignment quick list
+  var assignments = [{"due": "1/27/17", "link": "lab/lab00/", "name": "Lab 00: Introduction and Workflow", "release": "1/18/17"}, {"due": "1/27/17", "link": "lab/lab01/", "name": "Lab 01: Expressions and Control Structures", "release": "1/25/17"}, {"due": "2/3/17", "link": "lab/lab02/", "name": "Lab 02: Lambdas, Higher-Order Functions, and Recursion", "release": "2/1/17"}, {"due": "2/10/17", "link": "lab/lab03/", "name": "Lab 03: Data Abstraction and Recursion/Lambdas Review", "release": "2/8/17"}, {"due": "2/20/17", "link": "lab/lab04/", "name": "Lab 04: Lists, Linked Lists, and Trees", "release": "2/15/17"}, {"due": "2/24/17", "link": "lab/lab05/", "name": "Lab 05: Mutable Lists, Dictionaries, and Nonlocal", "release": "2/22/17"}, {"due": "3/3/17", "link": "lab/lab06/", "name": "Lab 06: Object-Oriented Programming", "release": "3/1/17"}, {"due": "3/10/17", "link": "lab/lab07/", "name": "Lab 07: Iterators and Generators", "release": "3/8/17"}, {"due": "3/20/17", "link": "lab/lab08/", "name": "Lab 08: Midterm Review", "release": "3/15/17"}, {"due": "3/24/17", "link": "lab/lab09/", "name": "Lab 09: Scheme", "release": "3/22/17"}, {"due": "4/7/17", "link": "lab/lab10/", "name": "Lab 10: Interpreters", "release": "4/5/17"}, {"due": "4/14/17", "link": "lab/lab11/", "name": "Lab 11: Streams, Sets, and Binary Trees", "release": "4/12/17"}, {"due": "4/21/17", "link": "lab/lab12/", "name": "Lab 12: SQL", "release": "4/19/17"}, {"due": "4/28/17", "link": "lab/lab13/", "name": "Lab 13: Spark", "release": "4/26/17"}, {"due": "1/30/17", "link": "hw/hw01/", "name": "Homework 01", "release": "1/23/17"}, {"due": "2/6/17", "link": "hw/hw02/", "name": "Homework 02", "release": "1/30/17"}, {"due": "2/14/17", "link": "hw/hw03/", "name": "Homework 03", "release": "2/8/17"}, {"due": "3/6/17", "link": "hw/hw04/", "name": "Homework 04", "release": "2/27/17"}, {"due": "3/13/17", "link": "hw/hw05/", "name": "Homework 05", "release": "3/6/17"}, {"due": "3/24/17", "link": "hw/hw06/", "name": "Homework 06", "release": "3/15/17"}, {"due": "4/6/17", "link": "hw/hw07/", "name": "Homework 07", "release": "3/24/17"}, {"due": "4/18/17", "link": "hw/hw08/", "name": "Homework 08", "release": "4/10/17"}, {"due": "4/27/17", "link": "hw/hw09/", "name": "Homework 09", "release": "4/20/17"}, {"due": "2/2/17", "link": "proj/hog/", "name": "Hog", "release": "1/25/17"}, {"due": "3/7/17", "link": "proj/hog_contest/", "name": "Hog Contest", "release": "2/22/17"}, {"due": "2/28/17", "link": "proj/maps/", "name": "Maps", "release": "2/17/17"}, {"due": "3/23/17", "link": "proj/ants/", "name": "Ants", "release": "3/8/17"}, {"due": "4/20/17", "link": "proj/scheme/", "name": "Scheme", "release": "4/3/17"}, {"due": "5/1/17", "link": "proj/scheme_contest/", "name": "Scheme Contest", "release": "4/19/17"}];
+
+  $(document).ready(function() {
+    $("#resources-search-box").keyup(function() {
+      if (!this.value) {
+        $('#resources-display').hide();
+      } else {
+        index.search($("#resources-search-box").val(), piazzaSearchCallback);
+        $('#resources-display').show();
+      }
+    });
+
+    var currentTime = Date.now();
+    var quickListCount = 0;
+    assignments.forEach(function(assignment) {
+      var release = new Date(assignment.release);
+      var due = new Date(assignment.due);
+      due.setDate(due.getDate() + 1);
+      if (currentTime > release && currentTime <= due) {
+        urlExists(assignment.link, function(exists) {
+          if (!exists) return;
+        if (quickListCount % 4 === 0) {
+          $('#assignment-quick-list').append('<div class="row"></div>');
+          quickListCount++;
+        }
+        $('#assignment-quick-list > div').last().append(
+            '<div class="col-xs-6 col-md-3">'
+            + '<div class="quick-list-item">'
+            + '<a href="' + assignment.link + '"><span class="quick-list-item-link"></span></a>'
+            + assignment.name
+            + '<hr/>Due '
+            + assignment.due
+            + '</div></div>');
+        });
+      }
+    });
+  });
+
+  // Announcements
+  var announcementIndex = 0;
+
+  function setAnnouncements(offset) {
+    var newIndex = announcementIndex  + offset;
+    var announcementNumber = $('.announcement').length;
+
+    if (newIndex < 0 || newIndex >= announcementNumber) {
+      return;
+    }
+
+    $('#announcement-' + announcementIndex).hide(0, function() {
+      $('#announcement-' + newIndex).show(0);
+    });
+
+    announcementIndex = newIndex;
+
+    if (announcementIndex >= announcementNumber - 1) {
+      $('#announcement-' + announcementIndex + ' .announcement-btn-older')
+        .addClass('disabled');
+    }
+    if (announcementIndex === 0) {
+      $('#announcement-' + announcementIndex + ' .announcement-btn-newer')
+        .addClass('disabled');
+    }
+  }
+  setAnnouncements(0);
+
+  $('.announcement-btn-newer > a').click(function() {
+    setAnnouncements(-1);
+  });
+  $('.announcement-btn-older > a').click(function() {
+    setAnnouncements(1);
+  });
+});
+</script>
+
+
+  
+</body></html>

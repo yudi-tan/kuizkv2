@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="{% static 'forum/css/index_stylesheet.css' %}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>快问</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="top_bar" id="top_bar">
+
+<ul id = "menu">
+    <li>
+        <a href="{% url 'classroom:detail' pk=pk %}"><span class="glyphicon glyphicon-home"></span>  Classroom</a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-education"></span> Forum
+    </li>
+    <li>
+        <span class= "glyphicon glyphicon-envelope"></span>  Contact Us
+    </li>
+    <li>
+        <span class = "glyphicon glyphicon-flag"></span>  About Us
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-user"></span> Logout
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>  New Post
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-cog"></span> User Profile
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>  Add Assignment
+    </li>
+</ul>
+
+
+
+</div>
+<div class="down_bar">
+<ul id = "secondmenu">
+    <li>
+        hw1
+    </li>
+    <li>
+        hw2
+    </li>
+    <li>
+        hw3
+    </li>
+    <li>
+        hw4
+    </li>
+
+</ul>
+</div>
+
+<div class="searchbox">
+    <div class="newpost">
+    <button id="new_post_button" class="btn-primary right btn-small" onclick="">
+        <span class="glyphicon glyphicon-file"></span><a href="{% url 'classroom:forum:createforumpost' pk pk2 %}"> New Post</a></button>
+    </div>
+    <div class="search_bar">
+    <form role="form" action=""></form>
+        <p class="input-group">
+            <input type="text" class="form-control search-input" name="q" />
+            <span class="input-group-addon search-icon">
+        <button class="glyphicon glyphicon-search" aria-hidden="true" onclick=""></button>
+    </span>
+            <input type="hidden" name="mode" value="web"/>
+        </p>
+    </div>
+</div>
+<div class="questions_group">
+
+
+<div title="Pinned" id="bucket_pin" class="page_feed_bucket_header">
+   <span class="glyphicon glyphicon-pushpin"></span><a data-toggle="collapse" href="#collapse1">Pinned</a>
+    <div id="collapse1" class="panel-collapse collapse">
+        <ul class="list-group">
+            {% if all_forumposts %}
+            {% for post in all_forumposts %}
+            <li class="list-group-item"><h5><u><strong><a id="grabpost" data-catid="{{ post.id }}" href='javascript:GetPost()'>{{ post.title }}</a></strong></u> </h5><br> <p>{{ post.summary }}</p></li>
+            {% endfor %}
+            {% else %}
+            <li class="list-group-item">No posts yet.</li>
+            {% endif %}
+
+           
+        </ul>
+    </div>
+</div>
+
+    <div title="Today" id="bucket_pin2" class="page_feed_bucket_header">
+        <a data-toggle="collapse" href="#collapse2">
+            <div class="inner-text" style="margin-left: 10px;">Today</div></a>
+
+
+    <div id="collapse2" class="panel-collapse collapse">
+        <ul class="list-group">
+            <li class="list-group-item">One</li>
+            <p>
+        </ul>
+    </div>
+    </div>
+    <div>
+    <p id="posted">UPDATE</p>
+    </div>
+
+<script src="{% static 'forum/js/index_js.js' %}"></script>
+<script type="text/javascript">
+function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+               var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) == (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+             }
+          }
+      }
+ return cookieValue;
+};
+
+
+    function GetPost(){
+         var csrftoken = getCookie('csrftoken');
+         
+        $.ajax({
+            type: "GET",
+            url: "{% url 'classroom:forum:forumpostapi' pk pk2 %}",
+            dataType: "json",
+            async: true,
+            data: { csrfmiddlewaretoken: '{{ csrf_token }}'},
+            success: function(json){
+                $('#posted').html(json[1].text);
+                
+            }
+        })
+
+    };
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+<!--<div class="questions_group">
+    <div title="Pinned" onclick="myFunction()" id="bucket_pin" class="page_feed_bucket_header">
+        <span class="glyphicon glyphicon-pushpin"></span>Pinned
+    </div>
+    <div id="myDIV">
+        This is my DIV element.
+    </div>
+</div>
+<script src="index_js.js"></script>-->
+
+
+
+
+<!--<div class="panel-group" style="margin: 200px;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse1">Collapsible list group</a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+            <ul class="list-group">
+                <li class="list-group-item">One</li>
+                <li class="list-group-item">Two</li>
+                <li class="list-group-item">Three</li>
+            </ul>
+            <div class="panel-footer">Footer</div>
+        </div>
+    </div>
+</div>-->

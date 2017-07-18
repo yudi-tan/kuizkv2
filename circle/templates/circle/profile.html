@@ -1,0 +1,22 @@
+<html>
+<head>
+<title> Profile </title>
+</head>
+
+<body>
+<p> Your username: {{ user.username }}</p>
+<p>Hi, {{ user.first_name }} welcome to your profile page </p>
+<br>
+<ul>
+<li>{{ user.relate_profile.organization }}</li>
+<li>Class of: {{ user.relate_profile.year_of_grad }}</li>
+<li>{{ user.relate_profile.bio }}</li>
+<li>{{ user.relate_profile.stack }}</li>
+
+
+
+
+</ul>
+
+</body>
+</html>

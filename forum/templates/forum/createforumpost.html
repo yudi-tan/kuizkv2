@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- saved from url=(0018)https://cs61a.org/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    {% load static %}
+
+    <meta name="viewport" content="width=device-width">
+
+    <script src="{% static "classroom/js/jquery.min.js" %}"></script>
+    <script src="{% static "classroom/js/bootstrap.min.js" %}"></script>
+
+    <link rel="stylesheet" href="{% static "classroom/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "classroom/css/style.css" %}">
+    <link rel="icon" href="https://cs61a.org/assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="{% static "classroom/css/mono-blue.css" %}">
+    <script src="{% static "classroom/js/highlight.pack.js" %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+  </head>
+<body>
+<div class="container">    
+        <div  style="margin-top:50px;"   class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info"  >
+                    <div class="panel-heading"  style="background-color:  #337ab7">
+                        <div class="panel-title" style="color: rgb(  243, 243, 243 );">New Post</div>
+                       
+                    </div>     
+
+                    <div class="panel-body" >
+                        <form class='form-horizontal' action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+
+      <span class="text-danger small">{{ field.errors }}</span>
+
+    </div>
+
+    <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+
+    <div class="col-sm-10">
+      {{ field }}
+    </div>
+
+
+  </div>
+
+
+
+
+{% endfor %}
+              
+                       
+
+                                <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
+                                    
+                                    <div class="col-md-offset-2 col-md-9">
+                                    <button id="btn-user-post" type="submit" class="btn btn-primary" ><i class="icon-hand-right"></i>Post!</button>
+
+                                         
+                                    </div>
+                                        
+                                    </div>                                           
+                                 </form> 
+                                </div>
+                         </div>                     
+                    </div>  
+        </div>
+        
+        
+    </div>
+
+  
+</body></html>
