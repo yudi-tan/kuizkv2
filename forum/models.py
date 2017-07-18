@@ -8,7 +8,6 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.conf import settings
 from classroom.models import Classroom
-from annoying.fields import AutoOneToOneField
 from django.db.models import signals
 
 
@@ -57,12 +56,4 @@ class Comment(models.Model):
     	return reverse('forum:detail', kwargs={'pk':self.post.pk})
 
     def __str__(self):
-        return self.text	
-
-
-
-
-
-
-
-
+        return self.text
