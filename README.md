@@ -5,4 +5,4 @@ Online classroom builder that also features a piazza-like forum page per classro
 ![Homepage](https://github.com/YudiTan/kuizkv2/master/home.png "Home Page Screenshot")
 
 
-![New Assignment Page](kuizkv2/newassignment.png)
+![New Assignment Page](kuizkv2/piazza-clone.png)
